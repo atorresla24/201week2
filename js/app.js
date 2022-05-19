@@ -2,6 +2,7 @@
 
 let salesSection = document.getElementById('sales');
 let table = document.getElementById('salesTable');
+let form = document.getElementById('newStore');
 
 let hours= ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm']
 
@@ -81,6 +82,26 @@ new Location('Lima', 2, 16, 4.6);
 tHeader();
 //console.log(storeSales);
 renderData();
+
+function doSubmit(event){
+  event.preventDefault();
+
+  let storeName = event.target.storeName.value;
+  let minCust = +event.target.minCust.value;
+  let maxCust = +event.target.maxCust.value;
+  let avgCookies = +event.target.avgCookies.value;
+
+  let newStore = new Location(storeName, minCust, maxCust, avgCookies);
+
+  //newStore.randCust();
+  newStore.getTotal();
+  newStore.render();
+  //newStore.renderData();
+}
+
+newStore.addEventListener('submit', doSubmit);
+
+
 //Objects 
 
 //let seattle = {

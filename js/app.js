@@ -74,6 +74,27 @@ function tHeader(){
   thTotal.textContent = 'Daily Total';
 };
 
+function footer(){
+  let footElem = document.createElement('tfoot');
+  salesTable.appendChild(footElem);
+  let footRow = document.createElement('tr');
+  footElem.appendChild(footRow);
+
+  let tdElem = document.createElement('td');
+  tdElem.textContent = 'Hourly Totals';
+  footRow.appendChild(tdElem);
+
+  for(let i = 0; i < hours.length; i++){
+    let fTotal = 0;
+    for (let j = 0; j < storeSales.length; j++){
+      fTotal += storeSales[j].cookieArray[i]
+    }
+    let dataCell = document.createElement('td');
+    dataCell.textContent = `${fTotal}`
+    footRow.appendChild(dataCell);
+  }
+}
+
 new Location('Seattle', 23, 65, 6.3);
 new Location('Tokyo', 3, 24, 1.2);
 new Location('Dubai', 11, 38, 3.7);
@@ -82,6 +103,7 @@ new Location('Lima', 2, 16, 4.6);
 tHeader();
 //console.log(storeSales);
 renderData();
+footer();
 
 function doSubmit(event){
   event.preventDefault();
